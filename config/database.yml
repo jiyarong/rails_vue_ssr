@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  username: jiyarong
+  password: ad66544970123
+  pool: 100
+  port: 5432
+  host: localhost
+
+development:
+  <<: *default
+  database: vue_ssr
+
+test:
+  <<: *default
+  database: vue_ssr_test
+  # database: db/test.sqlite3
+
+production:
+  <<: *default
+  database: vue_ssr_prod

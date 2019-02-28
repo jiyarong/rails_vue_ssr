@@ -1,0 +1,32 @@
+<style>
+  .login-container {
+    margin: 10% 30%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-form input {
+    margin-left:  100px;
+    margin-right:  100px;
+    margin-top: 20px;
+  }
+
+  .login-form input[type=submit] {
+    margin-left:  200px;
+    margin-right:  200px;
+  }
+
+</style>
+
+<div class="login-container">
+  <%= form_tag('/users/login', class: "login-form") do %>
+    <%= text_field_tag(:name) %>
+    <%= password_field_tag(:password) %>
+    <%= submit_tag '登录' %>
+  <% end %>
+</div>
