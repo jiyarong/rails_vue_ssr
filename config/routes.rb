@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # resources :posts
 
   get '*path', to: 'home#index', constraints: -> (request) do
-    !request.url.include?('/packs')
+    !request.url.include?('/packs') and !request.url.include?('favicon.ico')
   end
 
 end
