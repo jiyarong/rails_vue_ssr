@@ -120,9 +120,9 @@ var RailsVueUJS = {
         initializeObject.store = RailsVueUJS.store
       }
 
-      setTimeout(() => {
-        new Vue(initializeObject)
-      })
+      // setTimeout(() => {
+      //   new Vue(initializeObject)
+      // })
 
     })
   },
