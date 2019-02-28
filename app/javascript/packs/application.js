@@ -8,7 +8,11 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import RailsVueUJS from '../rails_vue_ujs';
-import Application from '../vue_components/application'
-
-RailsVueUJS.initialComponentsObject(Application);
+import VueRouter from 'vue-router';
+import Vuex from 'vuex';
+import store from "../vue_components/store";
+var componentRequireContext = require.context("vue_components", true);
+RailsVueUJS.initialComponentsContext(componentRequireContext);
+RailsVueUJS.use(VueRouter, Vuex);
+RailsVueUJS.initializeVuexStore(store);
 self.RailsVueUJS = RailsVueUJS;

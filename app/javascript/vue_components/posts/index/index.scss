@@ -1,3 +1,32 @@
 .posts {
-  font-size: 15px;
+  text-align: center;
+}
+
+.post-item {
+  margin: 40px 20%;
+  border-bottom: #CCCCCC 1px solid;
+  a {
+    color: #000000;
+    text-decoration: none;
+  };
+
+  .post-item__title {
+    color: #000000;
+    font-size: 2rem;
+  };
+
+  .post-item__updated_at {
+    color: #CCCCCC;
+    font-size: 1rem;
+    font-weight: lighter;
+  }
+}
+
+.edit-area {
+  float: right;
+
+  button {
+    border-radius: 5px;
+    color: floralwhite;
+  }
 }

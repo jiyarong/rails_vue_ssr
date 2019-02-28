@@ -1,0 +1,8 @@
+<%= vue_component("application", {posts: @posts},
+                  {
+                      prerender: request.path,
+                      state: {
+                          hasLogin: current_user.present?
+                      }
+                  })
+%>
