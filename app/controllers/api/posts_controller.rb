@@ -1,5 +1,6 @@
 class Api::PostsController < ApplicationController
   before_action :get_post, only: [:show, :update, :destroy]
+  before_action :verify_post_user, except: [:index, :show]
 
   def index
     @posts = Post.page(params[:page] || 1).per(params[:per_page] || 20)
@@ -35,5 +36,11 @@ class Api::PostsController < ApplicationController
 
   def post_params
     params[:post].permit(:title, :content)
+  end
+
+  def verify_post_user
+    if current_user.blank?
+      render json: {msg: "没有权限！"}, status: 422
+    end
   end
 end
