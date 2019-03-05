@@ -2,7 +2,7 @@ FROM ruby:2.5.1
 
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-ENV RAILS_ROOT /var/www/rails_vue_ssr
+ENV RAILS_ROOT /var/www/rails_vue_ssr_docker
 RUN mkdir -p $RAILS_ROOT
 
 WORKDIR $RAILS_ROOT
