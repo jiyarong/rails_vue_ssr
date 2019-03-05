@@ -54,6 +54,19 @@ and (max-device-width : 1024px)  { /* 兼容ipad */
 //  html {font-size: 10px;}
 //}
 
+p {
+  line-height: 150%;
+  color: #727272;
+}
+
+
+pre {
+  background: #f5f2f0;
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+}
+
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
@@ -244,11 +257,4 @@ body {
   display: inline-block;
   vertical-align: middle;
   width: auto
-}
-
-pre {
-  background: #f5f2f0;
-  padding: 1em;
-  margin: .5em 0;
-  overflow: auto;
 }
