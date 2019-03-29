@@ -2,6 +2,11 @@
   <div class="post-show-container">
     <div class="post-title">
       {{this.title}}
+      <div class="post-tags">
+        <template v-for="tag in this.tags">
+          <span>{{tag.name}}</span>
+        </template>
+      </div>
       <div class="edit-area" v-if="$store.state.hasLogin">
         <router-link :to="'/posts/edit/' + this.$route.params.id" >
           <button style="background: burlywood">
@@ -27,22 +32,21 @@
   import 'vue-awesome/icons/trash-alt'
   import Icon from 'vue-awesome/components/Icon'
   import "./index.scss"
+  import { getPost } from "../../../src/api";
 
   export default {
     data () {
       return {
         title: "",
-        content: ""
+        content: "",
+        tags: []
       }
     },
     beforeMount () {
-      fetch(`/api/posts/${this.$route.params.id}`).then((response) => {
-        if (response.ok) {
-          return response.json()
-        }
-      }).then((data) => {
+      getPost(this.$route.params.id).then((data) => {
         this.title = data.title;
         this.content = data.content;
+        this.tags = data.tags
       });
     },
     updated () {

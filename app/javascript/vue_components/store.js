@@ -5,7 +5,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     currentUser: {},
-    hasLogin: false
+    hasLogin: false,
+    csrfToken: ""
   }
 });
 

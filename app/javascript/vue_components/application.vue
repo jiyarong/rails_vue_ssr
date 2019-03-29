@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="content">
-        <router-view :outside="outside" :env_ssr="env_ssr"></router-view>
+        <router-view v-bind="$attrs" :outside="outside" :env_ssr="env_ssr"></router-view>
       </div>
       <router-link to="/posts/new" v-if="$store.state.hasLogin && $route.path !== '/posts/new'" class="add-new">
         +

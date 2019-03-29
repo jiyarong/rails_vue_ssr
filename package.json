@@ -18,6 +18,7 @@
     "vue-infinite-loading": "^2.4.3",
     "vue-loader": "^15.7.0",
     "vue-markdown": "^2.2.4",
+    "vue-multiselect": "^2.1.4",
     "vue-router": "^3.0.2",
     "vue-server-renderer": "^2.5.22",
     "vue-template-compiler": "2.6.9",

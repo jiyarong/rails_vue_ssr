@@ -6,6 +6,7 @@ class Api::PostsController < ApplicationController
     @posts = Post.page(params[:page] || 1).per(params[:per_page] || 20)
                  .order("updated_at desc")
                  .select(:id, :title, :updated_at)
+                 .includes(:tags)
     render json: {
         last_page: @posts.last_page? || @posts.blank?,
         posts: @posts.map(&:json_attributes)
@@ -13,7 +14,7 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    render json: {title: @post.title, content: @post.content}
+    render json: {title: @post.title, content: @post.content, tags: @post.tags.select(:name, :id)}
   end
 
   def create
@@ -35,7 +36,7 @@ class Api::PostsController < ApplicationController
   end
 
   def post_params
-    params[:post].permit(:title, :content)
+    params[:post].permit(:title, :content, tag_ids: [], tags_attributes: [:name])
   end
 
   def verify_post_user
