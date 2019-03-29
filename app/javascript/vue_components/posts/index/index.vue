@@ -5,16 +5,24 @@
         <div class="post-item">
           <router-link :to="'/posts/' + post.id" >
             <div class="post-item__title">
-              <span>{{post.title}}</span>
+              <div class="title-area">
+                <div class="title">{{post.title}}</div>
+                <div class="post-item__tags">
+                  <template v-for="tag in post.tags">
+                    <span>{{tag.name}}</span>
+                  </template>
+                </div>
+              </div>
+
               <div class="edit-area" v-if="$store.state.hasLogin">
                 <router-link :to="'/posts/edit/' + post.id" >
                   <button style="background: burlywood">
                     <v-icon name="edit"></v-icon>
                   </button>
                 </router-link>
-                <button style="background: crimson">
-                  <v-icon name="trash-alt"></v-icon>
-                </button>
+                <!--<button style="background: crimson">-->
+                  <!--<v-icon name="trash-alt"></v-icon>-->
+                <!--</button>-->
               </div>
             </div>
           </router-link>
@@ -37,6 +45,7 @@
   import 'vue-awesome/icons/edit'
   import 'vue-awesome/icons/trash-alt'
   import Icon from 'vue-awesome/components/Icon'
+  import { getPosts } from "../../../src/api";
 
   export default {
     props: ['outside', 'env_ssr'],
@@ -47,16 +56,9 @@
         loading: false
       }
     },
-    created () {
-      console.log("in env:", this.env_ssr)
-    },
     methods: {
       infiniteHandler($state) {
-        fetch(`/api/posts?page=${this.page + 1}`).then((response) => {
-          if (response.ok) {
-            return response.json()
-          }
-        }).then((data) => {
+        getPosts(this.page + 1).then((data) => {
           console.log(data);
           this.posts.push(...data.posts);
           this.page += 1;
@@ -66,6 +68,11 @@
             $state.loaded()
           }
         })
+        // fetch(`/api/posts?page=${this.page + 1}`).then((response) => {
+        //   if (response.ok) {
+        //     return response.json()
+        //   }
+        // })
       }
     },
     components: {

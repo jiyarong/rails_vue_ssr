@@ -3,12 +3,14 @@
     v-if="!loading"
     :initialTitle="this.title"
     :initialContent="this.content"
+    :initialTags="this.tags"
     :onSubmit="this.submitPost" />
   <div v-else>加载中...</div>
 </template>
 
 <script>
   import PostForm from '../_form/index'
+  import { getPost, updatePost } from "../../../src/api";
 
   export default {
     props: ['outside'],
@@ -16,44 +18,28 @@
       return {
         title: "",
         content: "",
+        tags: [],
         loading: true
       }
     },
     beforeMount () {
-      fetch(`/api/posts/${this.$route.params.id}`).then((response) => {
-        if (response.ok) {
-          return response.json()
-        }
-      }).then((data) => {
+      getPost(this.$route.params.id).then((data) => {
         this.title = data.title;
         this.content = data.content;
+        this.tags = data.tags;
         this.loading = false
       });
     },
 
     methods: {
-      submitPost (title, content) {
+      submitPost (attributes) {
         return new Promise((resolve, reject) => {
-          if (title === "") {
+          if (attributes.title === "") {
             alert("标题不能为空!");
             return reject()
           }
 
-          fetch(`/api/posts/${this.$route.params.id}`, {
-            method: "PUT",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': this.outside.csrf_token
-            },
-            body: JSON.stringify({
-              post: {title: title, content: content}
-            })
-          }).then((response) => {
-            if (response.ok) {
-              return response.json()
-            }
-          }).then((data) => {
+          updatePost(this.$route.params.id, {post: attributes}).then((data) => {
             if (data.success) {
               alert("更新成功!");
               this.$router.push(`/posts/${this.$route.params.id}`)
@@ -62,9 +48,8 @@
               alert(data.msg);
               return reject()
             }
-          })
+          });
         })
-
       },
     },
     components: {

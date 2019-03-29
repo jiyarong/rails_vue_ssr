@@ -4,4 +4,16 @@
     width: 100%;
     text-align: center;
   }
+
+  .post-tags {
+    margin-bottom: 10px;
+
+    span {
+      font-size: 12px;
+      border: 1px solid orange;
+      padding: 2px 5px;
+      color: coral;
+      margin-right: 2px;
+    }
+  }
 }
