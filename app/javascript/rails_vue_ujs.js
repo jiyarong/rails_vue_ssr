@@ -55,7 +55,7 @@ var RailsVueUJS = {
     componentsArgs[componentInitialName] = component;
     let initializeObject = {
       data: {data: props},
-      template: `<${componentInitialName} :outside="data" :env_ssr="true" />`,
+      template: `<${componentInitialName} :outside="data" :env_ssr="true" v-bind="data" />`,
       components: componentsArgs
     };
 
@@ -105,7 +105,7 @@ var RailsVueUJS = {
       let initializeObject = {
         el: d,
         data: {data: JSON.parse(d.dataset.vueData)},
-        template: `<${componentInitialName} :outside="data" :env_ssr="false" />`,
+        template: `<${componentInitialName} :outside="data" :env_ssr="false" v-bind="data" />`,
         components: componentsArgs
       };
 

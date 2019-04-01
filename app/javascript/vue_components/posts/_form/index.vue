@@ -47,6 +47,7 @@
     props: {
       initialTitle: String,
       initialContent: String,
+      initialId: String,
       initialTags: {type: Array, default: []},
       onSubmit: Function,
       autoSave: {type: Boolean, default: false}
@@ -55,7 +56,8 @@
       return {
         title: this.initialTitle,
         content: this.initialContent,
-        tags: this.initialTags,
+        tags: this.initialTags || [],
+        id: this.initialId,
         tags_options: []
       }
     },
@@ -66,12 +68,11 @@
 
     mounted() {
       if (this.autoSave) {
-        let _content = localStorage.getItem(unsaved_content_key);
+        let _content = localStorage.getItem(this.unsavedContentKey());
         if (_content) {
           this.content = _content;
         }
-      }
-      ;
+      };
       Prism.highlightAll();
       this.fetchTags();
     },
@@ -87,15 +88,22 @@
         })
       },
 
+      unsavedContentKey() {
+        if (this.id) {
+          return `${unsaved_content_key}_${this.id}`
+        } else {
+          return unsaved_content_key
+        }
+      },
+
       renderMd() {
         Prism.highlightAll();
         if (this.autoSave) {
-          localStorage.setItem(unsaved_content_key, this.content)
+          localStorage.setItem(this.unsavedContentKey(), this.content)
         }
       },
 
       addTag (t) {
-        console.log(t)
         this.tags.push({name: t, id: null})
       },
 
@@ -122,7 +130,7 @@
         if (this.onSubmit !== undefined) {
           this.onSubmit(this.generateSubmitContent()).then(() => {
             if (this.autoSave) {
-              localStorage.removeItem(unsaved_content_key)
+              localStorage.removeItem(this.unsavedContentKey())
             }
           })
         }

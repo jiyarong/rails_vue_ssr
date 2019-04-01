@@ -1,23 +1,28 @@
 <template>
     <div class="container">
-      <div class="navigation-bar">
-        <div class="dashboard">
-          <router-link to="/">
-            <v-icon name="home" scale="3"></v-icon>
-          </router-link>
-        </div>
+      <head-menu>
+        <item color="antiquewhite" routerLink="/">
+          <v-icon name="home" scale="3"></v-icon>
+        </item>
 
-        <div class="navigate-logout" v-if="$store.state.hasLogin">
-          <a href="/users/logout">
+        <template>
+          <item color="antiquewhite" direction="right" v-if="$store.state.hasLogin" href="/users/logout">
             <v-icon name="sign-out-alt" scale="3"></v-icon>
-          </a>
-        </div>
-        <div class="navigate-logout" v-else>
-          <a href="/users/login">
+          </item>
+          <item color="antiquewhite" direction="right" v-else href="/users/login">
             <v-icon name="sign-in-alt" scale="3"></v-icon>
-          </a>
-        </div>
-      </div>
+          </item>
+        </template>
+
+        <item direction="right" color="antiquewhite" :group="[
+          {name: '我这个人', routerLink: '/about/me'},
+          {name: '这个博客', routerLink: '/about/this-blog'},
+          {name: '我的简历', routerLink: '/about/resume'}
+         ]">
+          关于
+        </item>
+      </head-menu>
+
       <div class="content">
         <router-view v-bind="$attrs" :outside="outside" :env_ssr="env_ssr"></router-view>
       </div>
@@ -33,12 +38,17 @@
   import PostDetail from './posts/show';
   import newPost from './posts/new';
   import EditPost from './posts/edit';
+  import aboutMe from './about/me';
+  import aboutThisBlog from './about/this_blog';
+  import aboutResume from './about/resume';
   import 'vue-awesome/icons/home'
   import 'vue-awesome/icons/sign-out-alt'
   import 'vue-awesome/icons/sign-in-alt'
   import Icon from 'vue-awesome/components/Icon'
   import "normalize.css";
   import './application.scss'
+  import HeadMenu from './layouts/header';
+  import Item from './layouts/item';
 
   const routes = [
     {
@@ -61,6 +71,21 @@
       path: '/posts/:id',
       component: PostDetail,
       name: 'post_detail'
+    },
+    {
+      path: '/about/me',
+      component: aboutMe,
+      name: 'about_me'
+    },
+    {
+      path: '/about/this-blog',
+      component: aboutThisBlog,
+      name: 'about_this_blog'
+    },
+    {
+      path: '/about/resume',
+      component: aboutResume,
+      name: 'about_resume'
     }
   ];
 
@@ -73,45 +98,16 @@
     props: ['outside', 'env_ssr'],
     router,
     components: {
-      'v-icon': Icon
+      'v-icon': Icon,
+      'item': Item,
+      HeadMenu
     }
   };
 </script>
 
 <style scoped>
-
-
  .container {
    width: 100%;
- }
-
- .navigation-bar {
-   position: fixed;
-   height: 55px;
-   width: 100vw;
-   background: cadetblue;
-   top: 0;
- }
-
- .dashboard {
-   width: 50px;
-   height: 100%;
-   text-align: center;
-   padding: 10px 0 0 20px;
-   display: inline;
- }
-
- .navigate-logout {
-   width: 50px;
-   height: 100%;
-   text-align: center;
-   float: right;
-   display: inline;
-   padding-right: 20px;
- }
-
- .dashboard a, .navigate-logout a {
-   color: antiquewhite;
  }
 
  .content {
