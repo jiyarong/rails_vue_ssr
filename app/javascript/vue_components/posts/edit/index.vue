@@ -4,6 +4,8 @@
     :initialTitle="this.title"
     :initialContent="this.content"
     :initialTags="this.tags"
+    :initialId="this.$route.params.id"
+    :autoSave="true"
     :onSubmit="this.submitPost" />
   <div v-else>加载中...</div>
 </template>
