@@ -2,7 +2,7 @@
     <div class="container">
       <head-menu>
         <item color="antiquewhite" routerLink="/">
-          <v-icon name="home" scale="3"></v-icon>
+          <v-icon style="padding-top: 5px" name="home" scale="3"></v-icon>
         </item>
 
         <template>

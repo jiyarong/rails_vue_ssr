@@ -17,13 +17,14 @@
     width: 100vw;
     background: cadetblue;
     top: 0;
+    z-index: 10000;
   }
 
   .menu-items {
-    padding: 5px;
+    /*padding: 5px;*/
     display: inline-block;
     font-size: 22px;
-    line-height: 45px;
+    line-height: 55px;
     padding-right: 20px;
     cursor: default;
   }
@@ -50,6 +51,10 @@
     width: auto;
     box-shadow: #CCCCCC;
     min-width: 100px;
+  }
+
+  .menu-group-trigger:hover {
+    background: darkslategray;
   }
 
   .menu-group {

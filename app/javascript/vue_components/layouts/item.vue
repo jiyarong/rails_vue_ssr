@@ -8,7 +8,7 @@
      <slot></slot>
     </a>
 
-    <div :class="this.mId" v-else-if="this.group" :style="'color: ' + this.color" @click="activeGroupMenu()">
+    <div :class="`${this.mId} menu-group-trigger`" v-else-if="this.group" :style="'color: ' + this.color" @click="activeGroupMenu()">
       <slot></slot>
       <v-icon class="sort-arrow" v-if="!this.groupMenuActive" name="sort-down"></v-icon>
       <v-icon class="sort-arrow-up" v-else name="sort-up"></v-icon>
