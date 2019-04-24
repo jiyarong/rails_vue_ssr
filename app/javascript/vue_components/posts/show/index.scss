@@ -1,8 +1,28 @@
 .post-show-container {
-  margin: 0 25%;
+
   .post-title {
     width: 100%;
     text-align: center;
+    background: #dfe8b5;
+    line-height: 30px;
+    padding: 5px;
+  }
+
+  .edit-area {
+    display: inline-block;
+    float: none;
+  }
+
+  .post-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    min-width: 500px;
+    max-width: 800px;
+    border: #9c9c9b 1px solid;
+    padding: 10px;
+    background: #ffffed;
+    border-radius: 5px;
   }
 
   .post-tags {

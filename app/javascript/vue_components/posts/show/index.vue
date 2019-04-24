@@ -2,21 +2,20 @@
   <div class="post-show-container">
     <div class="post-title">
       {{this.title}}
-      <div class="post-tags">
-        <template v-for="tag in this.tags">
-          <span>{{tag.name}}</span>
-        </template>
-      </div>
       <div class="edit-area" v-if="$store.state.hasLogin">
         <router-link :to="'/posts/edit/' + this.id" >
           <button style="background: burlywood">
             <v-icon name="edit"></v-icon>
           </button>
         </router-link>
-<!--        <button style="background: crimson">-->
-<!--          <v-icon name="trash-alt"></v-icon>-->
-<!--        </button>-->
       </div>
+
+      <div class="post-tags">
+        <template v-for="tag in this.tags">
+          <span>{{tag.name}}</span>
+        </template>
+      </div>
+
     </div>
     <div class="post-content">
       <vue-markdown :source="this.content"></vue-markdown>

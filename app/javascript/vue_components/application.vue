@@ -108,10 +108,12 @@
 <style scoped>
  .container {
    width: 100%;
+   margin-left: auto;
+   margin-right: auto;
  }
 
  .content {
-   padding-top: 60px;
+   padding-top: 55px;
  }
 
  .add-new {
