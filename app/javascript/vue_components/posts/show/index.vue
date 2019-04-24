@@ -52,14 +52,22 @@
         this.content = post.content;
         this.tags = post.tags;
         this.id = post.id;
+        this.outside.post = undefined;
       } else {
-        getPost(this.$route.params.id).then((data) => {
-          this.title = data.title;
-          this.content = data.content;
-          this.tags = data.tags
-        });
+        if (!this.env_ssr) {
+          getPost(this.id).then((data) => {
+            this.title = data.title;
+            this.content = data.content;
+            this.tags = data.tags
+          });
+        }
       }
     },
+
+    mounted () {
+      Prism.highlightAll();
+    },
+
     updated () {
       Prism.highlightAll();
     },
