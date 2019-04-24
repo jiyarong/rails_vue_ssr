@@ -3,10 +3,7 @@ class Api::PostsController < ApplicationController
   before_action :verify_post_user, except: [:index, :show]
 
   def index
-    @posts = Post.page(params[:page] || 1).per(params[:per_page] || 20)
-                 .order("updated_at desc")
-                 .select(:id, :title, :updated_at)
-                 .includes(:tags)
+    @posts = Post.list(page: params[:page] || 1, per: params[:per] || 20)
     render json: {
         last_page: @posts.last_page? || @posts.blank?,
         posts: @posts.map(&:json_attributes)

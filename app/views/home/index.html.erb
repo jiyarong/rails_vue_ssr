@@ -1,4 +1,4 @@
-<%= vue_component("application", {posts: @posts},
+<%= vue_component("application", {posts: @posts || nil, post: @post || nil},
   {
     prerender: request.path,
     state: {

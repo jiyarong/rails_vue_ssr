@@ -8,14 +8,14 @@
         </template>
       </div>
       <div class="edit-area" v-if="$store.state.hasLogin">
-        <router-link :to="'/posts/edit/' + this.$route.params.id" >
+        <router-link :to="'/posts/edit/' + this.id" >
           <button style="background: burlywood">
             <v-icon name="edit"></v-icon>
           </button>
         </router-link>
-        <button style="background: crimson">
-          <v-icon name="trash-alt"></v-icon>
-        </button>
+<!--        <button style="background: crimson">-->
+<!--          <v-icon name="trash-alt"></v-icon>-->
+<!--        </button>-->
       </div>
     </div>
     <div class="post-content">
@@ -35,19 +35,30 @@
   import { getPost } from "../../../src/api";
 
   export default {
+    props: ['outside', 'env_ssr'],
+
     data () {
       return {
         title: "",
         content: "",
-        tags: []
+        tags: [],
+        id: this.$route.params.id
       }
     },
-    beforeMount () {
-      getPost(this.$route.params.id).then((data) => {
-        this.title = data.title;
-        this.content = data.content;
-        this.tags = data.tags
-      });
+    created () {
+      if (this.outside && this.outside.post != undefined) {
+        let post = this.outside.post;
+        this.title = post.title;
+        this.content = post.content;
+        this.tags = post.tags;
+        this.id = post.id;
+      } else {
+        getPost(this.$route.params.id).then((data) => {
+          this.title = data.title;
+          this.content = data.content;
+          this.tags = data.tags
+        });
+      }
     },
     updated () {
       Prism.highlightAll();

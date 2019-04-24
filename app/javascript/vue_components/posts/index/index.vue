@@ -68,11 +68,6 @@
             $state.loaded()
           }
         })
-        // fetch(`/api/posts?page=${this.page + 1}`).then((response) => {
-        //   if (response.ok) {
-        //     return response.json()
-        //   }
-        // })
       }
     },
     components: {

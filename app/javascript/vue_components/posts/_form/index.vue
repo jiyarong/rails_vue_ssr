@@ -48,7 +48,7 @@
       initialTitle: String,
       initialContent: String,
       initialId: String,
-      initialTags: {type: Array, default: []},
+      initialTags: {type: Array, default: undefined},
       onSubmit: Function,
       autoSave: {type: Boolean, default: false}
     },

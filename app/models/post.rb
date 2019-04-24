@@ -3,6 +3,10 @@ class Post < ApplicationRecord
 
   accepts_nested_attributes_for :tags, allow_destroy: true
 
+  scope :list, -> (page: 1, per: 20) {
+    page(page).per(per).order("updated_at desc").select(:id, :title, :updated_at).includes(:tags)
+  }
+
   def json_attributes
     attributes.merge(updated_at: human_updated_at, tags: tags)
   end
