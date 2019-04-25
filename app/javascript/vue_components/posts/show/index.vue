@@ -58,12 +58,6 @@
             this.title = data.title;
             this.content = data.content;
             this.tags = data.tags
-            Array.from(document.getElementsByTagName('a')).forEach((a) => {
-              console.log(a)
-              if (a.attributes.href.value.startsWith('http') ) {
-                a.setAttribute('target', '_blank')
-              }
-            })
           });
         }
       }
