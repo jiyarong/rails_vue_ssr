@@ -18,7 +18,7 @@
 
     </div>
     <div class="post-content">
-      <vue-markdown :source="this.content"></vue-markdown>
+      <vue-markdown :postrender="this.postrender" :source="this.content"></vue-markdown>
     </div>
   </div>
 </template>
@@ -58,21 +58,27 @@
             this.title = data.title;
             this.content = data.content;
             this.tags = data.tags
+            Array.from(document.getElementsByTagName('a')).forEach((a) => {
+              console.log(a)
+              if (a.attributes.href.value.startsWith('http') ) {
+                a.setAttribute('target', '_blank')
+              }
+            })
           });
         }
       }
+
     },
 
     mounted () {
       Prism.highlightAll();
     },
-
     updated () {
       Prism.highlightAll();
     },
     methods: {
-      prerender()  {
-        return this.content
+      postrender (str) {
+        return str.replace(/(href)/g, "target='_blank' $&")
       }
     },
     components: {
