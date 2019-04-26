@@ -34,10 +34,16 @@
 </template>
 
 <script>
-  import "./index.scss"
+  import "./index.scss";
+  import 'vue-awesome/icons/edit'
+  import 'vue-awesome/icons/trash-alt'
+  import Icon from 'vue-awesome/components/Icon'
 
   export default {
-    props: ['posts']
+    props: ['posts'],
+    components: {
+      'v-icon': Icon
+    }
   }
 </script>
 
