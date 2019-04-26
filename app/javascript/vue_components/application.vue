@@ -2,15 +2,18 @@
     <div class="container">
       <head-menu>
         <item color="antiquewhite" routerLink="/">
-          <v-icon style="padding-top: 5px" name="home" scale="3"></v-icon>
+          主页
+<!--          <v-icon style="padding-top: 5px" name="home" scale="3"></v-icon>-->
         </item>
+
+        <item color="antiquewhite" router-link="/posts">文章</item>
 
         <template>
           <item color="antiquewhite" direction="right" v-if="$store.state.hasLogin" href="/users/logout">
-            <v-icon name="sign-out-alt" scale="3"></v-icon>
+            <v-icon style="padding-right: 15px" name="sign-out-alt" scale="3"></v-icon>
           </item>
           <item color="antiquewhite" direction="right" v-else href="/users/login">
-            <v-icon name="sign-in-alt" scale="3"></v-icon>
+            <v-icon style="padding-right: 15px" name="sign-in-alt" scale="3"></v-icon>
           </item>
         </template>
 
@@ -34,6 +37,7 @@
 
 <script>
   import VueRouter from 'vue-router';
+  import Homepage from './home_page'
   import PostList from './posts/index';
   import PostDetail from './posts/show';
   import newPost from './posts/new';
@@ -53,6 +57,12 @@
   const routes = [
     {
       path: '/',
+      component: Homepage,
+      name: 'home_page',
+      props: true
+    },
+    {
+      path: '/posts',
       component: PostList,
       name: 'post_index',
       props: true

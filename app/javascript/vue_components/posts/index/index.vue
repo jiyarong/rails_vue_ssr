@@ -1,36 +1,8 @@
 <template>
   <keep-alive>
     <div class="posts">
-      <template v-for="post in posts">
-        <div class="post-item">
-          <router-link :to="'/posts/' + post.id" >
-            <div class="post-item__title">
-              <div class="title-area">
-                <div class="title">{{post.title}}</div>
-                <div class="post-item__tags">
-                  <template v-for="tag in post.tags">
-                    <span>{{tag.name}}</span>
-                  </template>
-                </div>
-              </div>
+      <post-list :posts="posts"></post-list>
 
-              <div class="edit-area" v-if="$store.state.hasLogin">
-                <router-link :to="'/posts/edit/' + post.id" >
-                  <button style="background: burlywood">
-                    <v-icon name="edit"></v-icon>
-                  </button>
-                </router-link>
-                <!--<button style="background: crimson">-->
-                  <!--<v-icon name="trash-alt"></v-icon>-->
-                <!--</button>-->
-              </div>
-            </div>
-          </router-link>
-          <div class="post-item__updated_at">
-            <span>{{post.updated_at}}</span>
-          </div>
-        </div>
-      </template>
       <infinite-loading v-if="!this.env_ssr" @infinite="infiniteHandler">
         <div slot="no-more">No more posts</div>
         <div slot="no-results">No results message</div>
@@ -46,6 +18,7 @@
   import 'vue-awesome/icons/trash-alt'
   import Icon from 'vue-awesome/components/Icon'
   import { getPosts } from "../../../src/api";
+  import PostList from './list'
 
   export default {
     props: ['outside', 'env_ssr'],
@@ -72,7 +45,8 @@
     },
     components: {
       'infinite-loading': InfiniteLoading,
-      'v-icon': Icon
+      'v-icon': Icon,
+      'post-list': PostList
     }
   }
 </script>

@@ -18,6 +18,8 @@
     background: cadetblue;
     top: 0;
     z-index: 10000;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .menu-items {
