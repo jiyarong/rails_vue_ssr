@@ -29,8 +29,11 @@ and (max-device-width: 500px) {
     }
   }
 
-  .post-show-container {
-    margin: 0 !important;
+  .post-show-container .post-content {
+    font-size: 25px;
+    width: 100%;
+    max-width: none;
+    //margin: 0 !important;
   }
 
   .edit-area, .add-new {
