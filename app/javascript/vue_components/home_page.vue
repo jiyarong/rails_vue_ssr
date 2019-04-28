@@ -1,23 +1,22 @@
 <template>
   <div>
     <section class="homepage-section">
-      <div class="homepage-bg-container">
+<!--      <h1 class="homepage-title">Peter's Blog!</h1>-->
+      <div class="homepage-diary" >
+        <div class="homepage-diary-content" v-html="outside.diary.content"></div>
+        <div class="homepage-diary-created-at">
+          {{outside.diary.created_at}}
+        </div>
       </div>
-      <h1 class="homepage-title">Welcome to Peter's Blog!</h1>
-      <div class="homepage-sentence">
-        <template v-for="s in this.display_sentences">
-          <label>{{s}}</label>
-        </template>
-        <div v-show="this.sentence_inputting" class="vertical-line">|</div>
-      </div>
+
     </section>
     <div v-show="this.outside.posts" class="homepage-newest-posts">
-      <h2 class="posts-panel-title">
+      <div class="posts-panel-title">
         最新文章
         <router-link class="homepage-more-posts" to="/posts">
           more>
         </router-link>
-      </h2>
+      </div>
       <div class="homepage-posts-container">
         <post-list :posts="this.outside.posts.slice(0, 10)"></post-list>
       </div>
@@ -31,9 +30,6 @@
 
     data() {
       return {
-        sentence: "千里之行，始于足下",
-        display_sentences: [],
-        sentence_inputting: true
       }
     },
 
@@ -44,18 +40,7 @@
 
     mounted() {
       let navigation_bar = document.getElementsByClassName('navigation-bar')[0]
-      navigation_bar.style.backgroundColor = '#434c9e';
-
-      let i = 0;
-      setInterval(() => {
-        if (i < this.sentence.length) {
-          this.display_sentences.push(this.sentence[i])
-          i += 1
-        } else {
-          this.sentence_inputting = false;
-          return false
-        }
-      }, 400)
+      navigation_bar.style.backgroundColor = '#000000';
     },
     components: {
       'post-list': PostList
@@ -64,12 +49,28 @@
 </script>
 
 <style>
+  .homepage-section::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:500px;
+    background:transparent url(https://peter-blog-1256175221.cos.ap-chengdu.myqcloud.com/peter-blog-home-banner.jpg) center center no-repeat;
+    filter:blur(3px);
+    z-index:-1;
+    background-size:cover;
+  }
+
   .homepage-section {
-    text-align: center;
-    height: 300px;
+    background: rgba(0, 0, 0, 0.3);
+    /*text-align: center;*/
+    height: 500px;
     position: relative;
-    top: -30px;
-    font-style: italic
+    /*top: -30px;*/
+    font-style: italic;
+    /*background-image: url("https://peter-blog-1256175221.cos.ap-chengdu.myqcloud.com/peter-blog-home-banner.jpg");*/
+
   }
 
   .homepage-bg-container {
@@ -77,11 +78,10 @@
     height: 350px;
     width: 100%;
     z-index: -1;
-    animation: bgColorShouldDecrease 3s;
+    /*animation: bgColorShouldDecrease 3s;*/
     opacity: .7;
     background-image: url("https://peter-blog-1256175221.cos.ap-chengdu.myqcloud.com/peter-blog-home-banner.jpg");
   }
-
 
   .homepage-sentence {
     font-size: 20px;
@@ -96,18 +96,45 @@
   }
 
   .homepage-newest-posts {
-    animation: opacityDuration 1.5s;
+    /*animation: opacityDuration 1.5s;*/
   }
 
   .homepage-title {
     color: #FFFFFF;
     position: relative;
     top: 10px;
-    animation: fadeInDown 3s;
-    padding-top: 100px;
+    animation: fadeInDown 1.5s;
+  }
+
+  .homepage-diary {
+    font-size: 20px;
+    color: #FFFFFF;
+    animation: fadeInDown 1.5s;
+    position: relative;
+    top: 10px;
+    padding-top: 5%;
+  }
+
+  .homepage-diary-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45%;
+  }
+
+  .homepage-diary-created-at {
+    float: right;
+    padding: 10% 10% 0 0
   }
 
   .posts-panel-title {
+    width: 100%;
+    background: #000000;
+    padding: 5px;
+    color: antiquewhite;
+    font-size: 20px;
+  }
+
+  .diary-panel-title {
     width: 100%;
     background: #879bde;
     padding: 5px;

@@ -3,10 +3,10 @@
       <head-menu>
         <item color="antiquewhite" routerLink="/">
           主页
-<!--          <v-icon style="padding-top: 5px" name="home" scale="3"></v-icon>-->
         </item>
 
         <item color="antiquewhite" router-link="/posts">文章</item>
+<!--        <item color="antiquewhite" router-link="/posts">日记</item>-->
 
         <template>
           <item color="antiquewhite" direction="right" v-if="$store.state.hasLogin" href="/users/logout">
@@ -123,7 +123,7 @@
  }
 
  .content {
-   padding-top: 55px;
+   margin-top: 55px;
  }
 
  .add-new {

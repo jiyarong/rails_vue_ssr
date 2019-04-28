@@ -31,6 +31,10 @@
     cursor: default;
   }
 
+  .menu-items:hover a {
+    color: #ff9200 !important;
+  }
+
   .menu-items a {
     text-decoration: none;
   }
