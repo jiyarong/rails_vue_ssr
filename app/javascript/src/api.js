@@ -61,4 +61,8 @@ export const createPost = (attributes) => {
 
 export const updatePost = (id, attributes) => {
   return new Requester(getHeader("PUT", attributes), `/api/posts/${id}`).do_fetch()
+};
+
+export const createDiary = (attributes) => {
+  return new Requester(getHeader("POST", attributes), '/api/diaries').do_fetch()
 }

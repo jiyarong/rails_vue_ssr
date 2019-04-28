@@ -35,10 +35,4 @@ class Api::PostsController < ApplicationController
   def post_params
     params[:post].permit(:title, :content, tag_ids: [], tags_attributes: [:name])
   end
-
-  def verify_post_user
-    if current_user.blank?
-      render json: {msg: "没有权限！"}, status: 422
-    end
-  end
 end

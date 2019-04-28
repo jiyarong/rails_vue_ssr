@@ -45,6 +45,7 @@
   import aboutMe from './about/me';
   import aboutThisBlog from './about/this_blog';
   import aboutResume from './about/resume';
+  import newDiary from './diaries/new';
   import 'vue-awesome/icons/home'
   import 'vue-awesome/icons/sign-out-alt'
   import 'vue-awesome/icons/sign-in-alt'
@@ -60,6 +61,11 @@
       component: Homepage,
       name: 'home_page',
       props: true
+    },
+    {
+      path: '/diaries/new',
+      component: newDiary,
+      name: 'new_diary'
     },
     {
       path: '/posts',

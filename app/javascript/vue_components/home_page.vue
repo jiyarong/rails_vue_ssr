@@ -4,9 +4,10 @@
 <!--      <h1 class="homepage-title">Peter's Blog!</h1>-->
       <div class="homepage-diary" >
         <div class="homepage-diary-content" v-html="outside.diary.content"></div>
-        <div class="homepage-diary-created-at">
-          {{outside.diary.created_at}}
-        </div>
+      </div>
+
+      <div class="homepage-diary-created-at">
+        {{outside.diary.created_at}}
       </div>
 
     </section>
@@ -107,7 +108,7 @@
   }
 
   .homepage-diary {
-    font-size: 20px;
+    font-size: 18px;
     color: #FFFFFF;
     animation: fadeInDown 1.5s;
     position: relative;
@@ -122,8 +123,11 @@
   }
 
   .homepage-diary-created-at {
-    float: right;
-    padding: 10% 10% 0 0
+    display: block;
+    position: absolute;
+    right: 10%;
+    bottom: 15%;
+    color: #FFFFFF;
   }
 
   .posts-panel-title {
