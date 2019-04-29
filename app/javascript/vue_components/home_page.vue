@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="homepage-container">
     <section class="homepage-section">
 <!--      <h1 class="homepage-title">Peter's Blog!</h1>-->
       <div class="homepage-diary" >
@@ -50,6 +50,12 @@
 </script>
 
 <style>
+
+
+  .homepage-container {
+    position: relative;
+  }
+
   @keyframes transformXY {
     from {
       transform: scaleX(1) scaleY(1);
@@ -75,7 +81,10 @@
     background-size:cover;
     animation: transformXY 1.5s ease-in;
     transform: scaleX(1.1) scaleY(1.1);
+
   }
+
+
 
   .homepage-section {
     background: rgba(0, 0, 0, 0.5);
@@ -219,6 +228,19 @@
     to {
       top: 10px;
       opacity: 1;
+    }
+  }
+
+  @media only screen
+  and (min-device-width: 300px)
+  and (max-device-width: 500px) {
+    .homepage-section::before {
+      animation: none;
+      transform: none;
+    }
+
+    .posts-panel-title {
+      padding: 0;
     }
   }
 </style>
