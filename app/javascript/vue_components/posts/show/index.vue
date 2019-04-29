@@ -28,7 +28,6 @@
   import Prism from 'prismjs';
   import 'prismjs/themes/prism.css';
   import 'vue-awesome/icons/edit'
-  import 'vue-awesome/icons/trash-alt'
   import Icon from 'vue-awesome/components/Icon'
   import "./index.scss"
   import { getPost } from "../../../src/api";
@@ -65,6 +64,7 @@
     },
 
     mounted () {
+      scrollTo(0,0);
       Prism.highlightAll();
     },
     updated () {

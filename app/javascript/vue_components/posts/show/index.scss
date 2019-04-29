@@ -13,7 +13,22 @@
     float: none;
   }
 
+  @keyframes easeIn {
+    from {
+      opacity: 0.2;
+      filter:blur(1px);
+      left: -500px;
+    }
+
+    to {
+      opacity: 1;
+      filter:blur(0);
+      left: 0
+    }
+  }
+
   .post-content {
+    position: relative;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -24,6 +39,7 @@
     padding: 10px;
     background: #ffffed;
     border-radius: 5px;
+    animation: easeIn .4s ease-in-out;
   }
 
   .post-tags {
@@ -36,5 +52,15 @@
       color: coral;
       margin-right: 2px;
     }
+  }
+}
+
+@keyframes easeOut {
+  from {
+    opacity: .4;
+  }
+
+  to {
+    opacity: 1;
   }
 }

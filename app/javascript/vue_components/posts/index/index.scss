@@ -21,8 +21,12 @@
     };
 
     .title {
-      //display: inline-block;
+      transition: font-weight .1s ease-in;
     };
+
+    .title:hover {
+      font-weight: 600;
+    }
 
     .post-item__tags {
       //display: inline-block;

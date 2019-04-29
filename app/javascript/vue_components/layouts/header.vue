@@ -37,6 +37,7 @@
 
   .menu-items a {
     text-decoration: none;
+    transition: color .1s ease-in;
   }
 
   .menu-items-left {

@@ -50,23 +50,37 @@
 </script>
 
 <style>
+  @keyframes transformXY {
+    from {
+      transform: scaleX(1) scaleY(1);
+      filter:blur(0);
+    }
+
+    to {
+      transform: scaleX(1.1) scaleY(1.1);
+      filter:blur(3px);
+    }
+  }
+
   .homepage-section::before{
     content:'';
     position:absolute;
     top:0;
     left:0;
     width:100%;
-    height:500px;
+    height:700px;
     background:transparent url(https://peter-blog-1256175221.cos.ap-chengdu.myqcloud.com/peter-blog-home-banner.jpg) center center no-repeat;
     filter:blur(3px);
     z-index:-1;
     background-size:cover;
+    animation: transformXY 1.5s ease-in;
+    transform: scaleX(1.1) scaleY(1.1);
   }
 
   .homepage-section {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     /*text-align: center;*/
-    height: 500px;
+    height: 700px;
     position: relative;
     /*top: -30px;*/
     font-style: italic;
@@ -155,6 +169,11 @@
     color: antiquewhite;
     font-style: italic;
     text-decoration: none;
+    transition: color .1s ease-in;
+  }
+
+  .homepage-more-posts:hover {
+    color: #ff9200;
   }
   
   @keyframes bgColorShouldDecrease {
