@@ -1,5 +1,6 @@
 html {
   font-size: 15px;
+  font-family: "Merriweather", serif;
 }
 
 //@media (max-width: 400px) {
@@ -58,7 +59,8 @@ and (max-device-width : 1024px)  { /* 兼容ipad */
 //}
 
 p {
-  line-height: 150%;
+  line-height: 1.8em;
+  font-size: 1.2em;
 }
 
 
