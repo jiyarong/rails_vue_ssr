@@ -97,10 +97,12 @@
     width: 100%;
     opacity: .4;
     transition: opacity .2s ease-in;
+    animation: twink 3s infinite;
   }
 
   .homepage-down-arrow:hover {
     opacity: 1;
+    animation: none;
   }
 
   .homepage-section::before{
@@ -242,7 +244,7 @@
   }
 
 
-  @keyframes twinkAsInput {
+  @keyframes twink {
     from {
       opacity: 1;
     }
