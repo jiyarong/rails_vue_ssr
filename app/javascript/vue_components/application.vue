@@ -54,6 +54,8 @@
   import './application.scss'
   import HeadMenu from './layouts/header';
   import Item from './layouts/item';
+  const scrollToElement = require('scroll-to-element');
+  self.scrollToElement = scrollToElement
 
   const routes = [
     {

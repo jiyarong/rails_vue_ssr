@@ -10,6 +10,10 @@
         {{outside.diary.created_at}}
       </div>
 
+      <div class="homepage-down-arrow" @click="scrollToNext">
+        <v-icon name="angle-double-down" scale="2"></v-icon>
+      </div>
+
     </section>
     <div v-show="this.outside.posts" class="homepage-newest-posts">
       <div class="posts-panel-title">
@@ -25,7 +29,9 @@
   </div>
 </template>
 <script>
-  import PostList from './posts/index/list'
+  import PostList from './posts/index/list';
+  import 'vue-awesome/icons/angle-double-down'
+  import Icon from 'vue-awesome/components/Icon'
   export default {
     props: ['outside'],
 
@@ -42,18 +48,33 @@
     mounted() {
       let navigation_bar = document.getElementsByClassName('navigation-bar')[0]
       navigation_bar.style.backgroundColor = '#000000';
+      // document.addEventListener("scroll", function (e) {
+      //   console.log(e)
+      //   let h = document.getElementsByClassName("homepage-section")[0]
+      //   h.style.height = `${parseInt(getComputedStyle(h).height) - 20}px`
+      // })
     },
+
+    methods: {
+      scrollToNext () {
+        scrollToElement('.homepage-newest-posts', {
+          offset: -50,
+          duration: 1500
+        });
+      }
+    },
+
     components: {
-      'post-list': PostList
+      'post-list': PostList,
+      'v-icon': Icon
     }
   }
 </script>
 
 <style>
-
-
   .homepage-container {
     position: relative;
+    width: 100%;
   }
 
   @keyframes transformXY {
@@ -66,6 +87,20 @@
       transform: scaleX(1.2) scaleY(1.2);
       filter:blur(3px);
     }
+  }
+
+  .homepage-down-arrow {
+    color: #FFFFFF;
+    text-align: center;
+    position: absolute;
+    bottom: 12%;
+    width: 100%;
+    opacity: .4;
+    transition: opacity .2s ease-in;
+  }
+
+  .homepage-down-arrow:hover {
+    opacity: 1;
   }
 
   .homepage-section::before{
@@ -89,6 +124,7 @@
     /*text-align: center;*/
     height: 1160px;
     position: relative;
+    width: 100%;
     /*top: -30px;*/
     font-style: italic;
     /*background-image: url("https://peter-blog-1256175221.cos.ap-chengdu.myqcloud.com/peter-blog-home-banner.jpg");*/
