@@ -111,7 +111,7 @@
     top:0;
     left:0;
     width:100%;
-    height:1080px;
+    height:94vh;
     background:transparent url(https://peter-blog-1256175221.cos.ap-chengdu.myqcloud.com/peter-blog-home-banner.jpg) center center no-repeat;
     filter:blur(3px);
     z-index:-1;
@@ -124,7 +124,7 @@
   .homepage-section {
     background: rgba(0, 0, 0, 0.5);
     /*text-align: center;*/
-    height: 1160px;
+    height: 100vh;
     position: relative;
     width: 100%;
     /*top: -30px;*/
@@ -273,11 +273,11 @@
     .homepage-section::before {
       animation: none;
       transform: none;
-      height: 500px;
+      height: 100vh;
     }
 
     .homepage-section {
-      height: 500px;
+      /*height: 500px;*/
     }
 
     .posts-panel-title {
