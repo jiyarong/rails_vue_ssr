@@ -156,6 +156,7 @@
   }
 
   .homepage-newest-posts {
+    min-height: 100vh;
     /*animation: opacityDuration 1.5s;*/
   }
 
@@ -192,16 +193,9 @@
   .posts-panel-title {
     width: 100%;
     background: #000000;
-    padding: 5px;
+    padding: 10px;
     color: antiquewhite;
     font-size: 20px;
-  }
-
-  .diary-panel-title {
-    width: 100%;
-    background: #879bde;
-    padding: 5px;
-    color: antiquewhite;
   }
 
   .homepage-posts-container {

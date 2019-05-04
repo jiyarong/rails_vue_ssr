@@ -20,6 +20,10 @@
     <div class="post-content">
       <vue-markdown :postrender="this.postrender" :source="this.content"></vue-markdown>
     </div>
+
+    <viewer :images="images" @inited="inited">
+      <img v-show="false" v-for="src in images" :src="src" :key="src">
+    </viewer>
   </div>
 </template>
 
@@ -31,6 +35,8 @@
   import Icon from 'vue-awesome/components/Icon'
   import "./index.scss"
   import { getPost } from "../../../src/api";
+  import 'viewerjs/dist/viewer.css'
+  import Viewer from "v-viewer/src/component.vue";
 
   export default {
     props: ['outside', 'env_ssr'],
@@ -40,6 +46,7 @@
         title: "",
         content: "",
         tags: [],
+        images: [],
         id: this.$route.params.id
       }
     },
@@ -71,13 +78,34 @@
       Prism.highlightAll();
     },
     methods: {
+      inited (viewer) {
+        self.showViewer = function () {
+          viewer.show()
+        }
+      },
+      show () {
+        this.$viewer.show()
+      },
+
       postrender (str) {
+        if (typeof DOMParser !== "undefined") {
+          let dom = new DOMParser().parseFromString(str, "text/html");
+          let img_tags = Array.from(dom.getElementsByTagName("img"));
+          img_tags.forEach((img) => {
+            img.setAttribute("v-on:click", "show")
+          })
+          this.images = img_tags.map((img) => {return img.getAttribute("src")})
+        }
+
+        str = str.replace(/(src)/g, "onclick='showViewer()' $&")
+
         return str.replace(/(href)/g, "target='_blank' $&")
       }
     },
     components: {
       VueMarkdown,
-      'v-icon': Icon
+      'v-icon': Icon,
+      Viewer
     }
   }
 </script>
