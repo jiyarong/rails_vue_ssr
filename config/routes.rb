@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   namespace :api do
     resources :posts
     resources :tags
-    resources :diaries
+    resources :diaries do
+      member do
+        get :next
+        get :prev
+      end
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#index"

@@ -1,13 +1,20 @@
 <template>
   <div class="homepage-container">
     <section class="homepage-section">
-<!--      <h1 class="homepage-title">Peter's Blog!</h1>-->
-      <div class="homepage-diary" >
-        <div class="homepage-diary-content" v-html="outside.diary.content"></div>
+      <div class="homepage-diary">
+        <div v-show="!this.switchingDiary" class="homepage-diary-content" v-html="currentDiary.content"></div>
       </div>
 
       <div class="homepage-diary-created-at">
-        {{outside.diary.created_at}}
+        {{currentDiary.created_at}}
+      </div>
+
+      <div v-show="hasPrevDiary"  class="homepage-prev-diary" @click="viewPrevDiary">
+        <v-icon name="angle-double-left" scale="2"></v-icon>
+      </div>
+
+      <div v-show="hasNextDiary" class="homepage-next-diary" @click="viewNextDiary">
+        <v-icon name="angle-double-right" scale="2"></v-icon>
       </div>
 
       <div class="homepage-down-arrow" @click="scrollToNext">
@@ -30,13 +37,22 @@
 </template>
 <script>
   import PostList from './posts/index/list';
-  import 'vue-awesome/icons/angle-double-down'
-  import Icon from 'vue-awesome/components/Icon'
+  import 'vue-awesome/icons/angle-double-down';
+  import 'vue-awesome/icons/angle-double-left';
+  import 'vue-awesome/icons/angle-double-right';
+  import Icon from 'vue-awesome/components/Icon';
+  import { prevDiary, nextDiary } from '../src/api';
   export default {
     props: ['outside'],
 
     data() {
       return {
+        currentDiary: (this.outside && this.outside.diary) || {},
+        nextDiary: null,
+        prevDiary: null,
+        hasPrevDiary: true,
+        hasNextDiary: false,
+        switchingDiary: false
       }
     },
 
@@ -48,14 +64,41 @@
     mounted() {
       let navigation_bar = document.getElementsByClassName('navigation-bar')[0]
       navigation_bar.style.backgroundColor = '#000000';
-      // document.addEventListener("scroll", function (e) {
-      //   console.log(e)
-      //   let h = document.getElementsByClassName("homepage-section")[0]
-      //   h.style.height = `${parseInt(getComputedStyle(h).height) - 20}px`
-      // })
     },
 
     methods: {
+      viewPrevDiary () {
+        this.switchingDiary = true;
+        this.nextDiary = this.currentDiary;
+        this.hasNextDiary = true;
+        prevDiary(this.currentDiary.id).then((data) => {
+          if (data.diary !== null) {
+            this.currentDiary = data.diary
+          }
+          this.hasPrevDiary = !data.is_latest
+        });
+        this.prevDiary = null;
+        setTimeout(() => {
+          this.switchingDiary = false
+        })
+      },
+
+      viewNextDiary () {
+        this.switchingDiary = true;
+        this.prevDiary = this.currentDiary;
+        this.hasPrevDiary = true;
+        nextDiary(this.currentDiary.id).then((data) => {
+          if (data.diary !== null) {
+            this.currentDiary = data.diary;
+          }
+          this.hasNextDiary = !data.is_latest
+        });
+        this.nextDiary = null;
+        setTimeout(() => {
+          this.switchingDiary = false
+        })
+      },
+
       scrollToNext () {
         scrollToElement('.homepage-newest-posts', {
           offset: -50,
@@ -100,9 +143,31 @@
     animation: twink 3s infinite;
   }
 
-  .homepage-down-arrow:hover {
+  .homepage-down-arrow:hover,
+  .homepage-prev-diary:hover,
+  .homepage-next-diary:hover {
     opacity: 1;
     animation: none;
+  }
+
+  .homepage-prev-diary {
+    color: #FFFFFF;
+    text-align: center;
+    position: absolute;
+    bottom: 50%;
+    left: 5%;
+    opacity: .4;
+    transition: opacity .2s ease-in;
+  }
+
+  .homepage-next-diary {
+    color: #FFFFFF;
+    text-align: center;
+    position: absolute;
+    bottom: 50%;
+    right: 5%;
+    opacity: .4;
+    transition: opacity .2s ease-in;
   }
 
   .homepage-section::before{
@@ -180,7 +245,9 @@
     margin-left: auto;
     margin-right: auto;
     width: 45%;
+    animation: fadeInDown 1.5s;
   }
+
 
   .homepage-diary-created-at {
     display: block;

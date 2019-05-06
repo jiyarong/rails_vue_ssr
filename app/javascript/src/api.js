@@ -65,4 +65,12 @@ export const updatePost = (id, attributes) => {
 
 export const createDiary = (attributes) => {
   return new Requester(getHeader("POST", attributes), '/api/diaries').do_fetch()
-}
+};
+
+export const prevDiary = (currentId) => {
+  return new Requester(getHeader("GET"), `/api/diaries/${currentId}/prev`).do_fetch()
+};
+
+export const nextDiary = (currentId) => {
+  return new Requester(getHeader("GET"), `/api/diaries/${currentId}/next`).do_fetch()
+};
