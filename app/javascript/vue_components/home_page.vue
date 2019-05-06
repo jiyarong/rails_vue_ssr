@@ -1,36 +1,41 @@
 <template>
   <div class="homepage-container">
-    <section class="homepage-section">
-      <div class="homepage-diary">
-        <div v-show="!this.switchingDiary" class="homepage-diary-content" v-html="currentDiary.content"></div>
-      </div>
+    <div class="fixed-home-title">
+      <section class="homepage-section">
+        <div class="homepage-diary">
+          <div v-show="!this.switchingDiary" class="homepage-diary-content" v-html="currentDiary.content"></div>
+        </div>
 
-      <div class="homepage-diary-created-at">
-        {{currentDiary.created_at}}
-      </div>
+        <div class="homepage-diary-created-at">
+          {{currentDiary.created_at}}
+        </div>
 
-      <div v-show="hasPrevDiary"  class="homepage-prev-diary" @click="viewPrevDiary">
-        <v-icon name="angle-double-left" scale="2"></v-icon>
-      </div>
+        <div v-show="hasPrevDiary"  class="homepage-prev-diary" @click="viewPrevDiary">
+          <v-icon name="angle-double-left" scale="2"></v-icon>
+        </div>
 
-      <div v-show="hasNextDiary" class="homepage-next-diary" @click="viewNextDiary">
-        <v-icon name="angle-double-right" scale="2"></v-icon>
-      </div>
+        <div v-show="hasNextDiary" class="homepage-next-diary" @click="viewNextDiary">
+          <v-icon name="angle-double-right" scale="2"></v-icon>
+        </div>
 
-      <div class="homepage-down-arrow" @click="scrollToNext">
-        <v-icon name="angle-double-down" scale="2"></v-icon>
-      </div>
+        <div class="homepage-down-arrow" @click="scrollToNext">
+          <v-icon name="angle-double-down" scale="2"></v-icon>
+        </div>
 
-    </section>
-    <div v-show="this.outside.posts" class="homepage-newest-posts">
-      <div class="posts-panel-title">
-        最新文章
-        <router-link class="homepage-more-posts" to="/posts">
-          more>
-        </router-link>
-      </div>
-      <div class="homepage-posts-container">
-        <post-list :posts="this.outside.posts.slice(0, 10)"></post-list>
+      </section>
+    </div>
+
+    <div class="relative-home-content">
+      <div v-show="this.outside.posts" class="homepage-newest-posts">
+        <div class="posts-panel-title">
+          最新文章
+          <router-link class="homepage-more-posts" to="/posts">
+            more>
+          </router-link>
+        </div>
+        <div class="homepage-posts-container">
+          <post-list :posts="this.outside.posts.slice(0, 10)"></post-list>
+        </div>
       </div>
     </div>
   </div>
@@ -118,6 +123,21 @@
   .homepage-container {
     position: relative;
     width: 100%;
+  }
+
+  .fixed-home-title {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+  }
+
+  .relative-home-content {
+    z-index: 100;
+    position:relative;
+    top: 100vh;
+    background: beige;
+    min-height: 100vh;
   }
 
   @keyframes transformXY {
@@ -220,8 +240,8 @@
     animation-iteration-count: 10
   }
 
+
   .homepage-newest-posts {
-    min-height: 100vh;
     /*animation: opacityDuration 1.5s;*/
   }
 
