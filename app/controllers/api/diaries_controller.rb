@@ -1,5 +1,5 @@
 class Api::DiariesController < ApplicationController
-  before_action :verify_post_user
+  before_action :verify_post_user, only: [:create]
   before_action :find_diary, only: [:prev, :next]
 
   def create
