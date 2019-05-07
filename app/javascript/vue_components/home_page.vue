@@ -68,7 +68,7 @@
 
     mounted() {
       let navigation_bar = document.getElementsByClassName('navigation-bar')[0]
-      navigation_bar.style.backgroundColor = '#000000';
+      navigation_bar.style.backgroundColor = 'rgba(0,0,0,.6)';
     },
 
     methods: {
