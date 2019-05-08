@@ -10,6 +10,6 @@ class Api::WordsController < ApplicationController
   private
 
   def word_params
-    params.require(:word).permit(:text, :result, dict: [])
+    params.require(:word).permit(:text, :result, :link, dict: [])
   end
 end
