@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :posts
     resources :tags
+    resources :words
     resources :diaries do
       member do
         get :next
