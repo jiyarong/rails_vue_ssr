@@ -3,7 +3,7 @@
     <div class="post-title">
       {{this.title}}
       <div class="edit-area" v-if="$store.state.hasLogin">
-        <router-link :to="'/posts/edit/' + this.id" >
+        <router-link :to="'/posts/edit/' + this.id">
           <button style="background: burlywood">
             <v-icon name="edit"></v-icon>
           </button>
@@ -21,6 +21,8 @@
       <vue-markdown :postrender="this.postrender" :source="this.content"></vue-markdown>
     </div>
 
+    <div class="fb-comments" data-href="https://vblog.peterji.cn" data-width="" data-numposts="5"></div>
+
     <viewer :images="images" @inited="inited">
       <img v-show="false" v-for="src in images" :src="src" :key="src">
     </viewer>
@@ -34,14 +36,14 @@
   import 'vue-awesome/icons/edit'
   import Icon from 'vue-awesome/components/Icon'
   import "./index.scss"
-  import { getPost } from "../../../src/api";
+  import {getPost} from "../../../src/api";
   import 'viewerjs/dist/viewer.css'
   import Viewer from "v-viewer/src/component.vue";
 
   export default {
     props: ['outside', 'env_ssr'],
 
-    data () {
+    data() {
       return {
         title: "",
         content: "",
@@ -50,7 +52,7 @@
         id: this.$route.params.id
       }
     },
-    created () {
+    created() {
       if (this.outside && this.outside.post != undefined) {
         let post = this.outside.post;
         this.title = post.title;
@@ -70,31 +72,33 @@
 
     },
 
-    mounted () {
-      scrollTo(0,0);
+    mounted() {
+      scrollTo(0, 0);
       Prism.highlightAll();
     },
-    updated () {
+    updated() {
       Prism.highlightAll();
     },
     methods: {
-      inited (viewer) {
+      inited(viewer) {
         self.showViewer = function () {
           viewer.show()
         }
       },
-      show () {
+      show() {
         this.$viewer.show()
       },
 
-      postrender (str) {
+      postrender(str) {
         if (typeof DOMParser !== "undefined") {
           let dom = new DOMParser().parseFromString(str, "text/html");
           let img_tags = Array.from(dom.getElementsByTagName("img"));
           img_tags.forEach((img) => {
             img.setAttribute("v-on:click", "show")
           })
-          this.images = img_tags.map((img) => {return img.getAttribute("src")})
+          this.images = img_tags.map((img) => {
+            return img.getAttribute("src")
+          })
         }
 
         str = str.replace(/(src)/g, "onclick='showViewer()' $&")

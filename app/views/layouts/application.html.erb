@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application' %>
+
     <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
 
   </head>
@@ -13,5 +14,8 @@
     <%= yield %>
   </body>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=347474209238790&autoLogAppEvents=1"></script>
 
 </html>
