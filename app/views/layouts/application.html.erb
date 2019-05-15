@@ -11,11 +11,11 @@
   </head>
 
   <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=347474209238790&autoLogAppEvents=1"></script>
     <%= yield %>
   </body>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=347474209238790&autoLogAppEvents=1"></script>
 
 </html>
