@@ -9,9 +9,9 @@
     ["transform-class-properties", { "spec": true }],
     ["prismjs", {
       "languages": [
-        "javascript", "css", "markup", "go", "python",
+        "javascript", "markup", "go", "python",
         "ruby", "yaml", "vim", "sql", "scss", "sass",
-        "css", "nginx", "less", "docker"
+        "css", "nginx", "less", "docker", "cpp"
       ],
       "plugins": ["line-numbers"],
       "css": true

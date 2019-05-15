@@ -4,8 +4,8 @@
       <post-list :posts="posts"></post-list>
 
       <infinite-loading v-if="!this.env_ssr" @infinite="infiniteHandler">
-        <div slot="no-more">No more posts</div>
-        <div slot="no-results">No results message</div>
+        <div slot="no-more">No more posts. </div>
+        <div slot="no-results">No results message. </div>
       </infinite-loading>
     </div>
   </keep-alive>
