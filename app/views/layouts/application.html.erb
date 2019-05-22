@@ -12,7 +12,16 @@
 
   <body>
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=347474209238790&autoLogAppEvents=1"></script>
+    <!--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=347474209238790&autoLogAppEvents=1"></script>-->
+    <script>(function(d, s, id) {
+      setTimeout(() => {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=347474209238790&autoLogAppEvents=11";
+        fjs.parentNode.insertBefore(js, fjs);
+      }, 400)
+    }(document, 'script', 'facebook-jssdk'));</script>
     <%= yield %>
   </body>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>

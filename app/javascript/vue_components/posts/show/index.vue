@@ -21,7 +21,7 @@
       <vue-markdown :postrender="this.postrender" :source="this.content"></vue-markdown>
     </div>
 
-    <div class="fb-comments-container">
+    <div v-if="!env_ssr" class="fb-comments-container">
       <div class="fb-comments" :data-href="`https://vblog.peterji.cn/posts/${id}`" data-width="" data-numposts="5"></div>
     </div>
 
@@ -77,7 +77,9 @@
     mounted() {
       scrollTo(0, 0);
       Prism.highlightAll();
-      FB.XFBML.parse();
+      if (FB) {
+        FB.XFBML.parse();
+      }
     },
     updated() {
       Prism.highlightAll();
