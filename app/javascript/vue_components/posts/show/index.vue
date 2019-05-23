@@ -26,7 +26,7 @@
     </div>
 
     <viewer :images="images" @inited="inited">
-      <img v-show="false" v-for="src in images" :src="src" :key="src">
+      <img alt="" v-show="false" v-for="src in images" :src="src" :key="src">
     </viewer>
   </div>
 </template>

@@ -11,7 +11,7 @@
       "languages": [
         "javascript", "markup", "go", "python",
         "ruby", "yaml", "vim", "sql", "scss", "sass",
-        "css", "nginx", "less", "docker", "cpp"
+        "css", "nginx", "less", "docker", "cpp", "dart"
       ],
       "plugins": ["line-numbers"],
       "css": true
