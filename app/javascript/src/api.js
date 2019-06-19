@@ -74,3 +74,11 @@ export const prevDiary = (currentId) => {
 export const nextDiary = (currentId) => {
   return new Requester(getHeader("GET"), `/api/diaries/${currentId}/next`).do_fetch()
 };
+
+export const getWords = (page, status) => {
+  return new Requester(getHeader(), `/api/words?page=${page}&status=${status}`).do_fetch()
+};
+
+export const updateWordStatus = (id, status) => {
+  return new Requester(getHeader("PUT"), `/api/words/${id}?status=${status}`).do_fetch()
+};

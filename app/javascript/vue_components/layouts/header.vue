@@ -20,6 +20,7 @@
     z-index: 10000;
     padding-left: 20px;
     padding-right: 20px;
+    box-shadow: 0 1px 1px #807d7d;
   }
 
   .menu-items {

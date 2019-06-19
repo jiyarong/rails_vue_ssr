@@ -6,6 +6,7 @@
         </item>
 
         <item color="antiquewhite" router-link="/posts">文章</item>
+        <item color="antiquewhite" router-link="/words">单词本</item>
 <!--        <item color="antiquewhite" router-link="/posts">日记</item>-->
 
         <template>
@@ -27,7 +28,9 @@
       </head-menu>
 
       <div class="content">
-        <router-view v-bind="$attrs" :outside="outside" :env_ssr="env_ssr"></router-view>
+        <transition name="fade">
+          <router-view v-bind="$attrs" :outside="outside" :env_ssr="env_ssr"></router-view>
+        </transition>
       </div>
       <router-link to="/posts/new" v-if="$store.state.hasLogin && $route.path !== '/posts/new'" class="add-new">
         +
@@ -46,6 +49,7 @@
   import aboutThisBlog from './about/this_blog';
   import aboutResume from './about/resume';
   import newDiary from './diaries/new';
+  import wordIndex from './words/index';
   import 'vue-awesome/icons/home'
   import 'vue-awesome/icons/sign-out-alt'
   import 'vue-awesome/icons/sign-in-alt'
@@ -91,6 +95,11 @@
       name: 'post_detail'
     },
     {
+      path: '/words',
+      component: wordIndex,
+      name: 'word_index'
+    },
+    {
       path: '/about/me',
       component: aboutMe,
       name: 'about_me'
@@ -124,6 +133,13 @@
 </script>
 
 <style scoped>
+  /*.fade-enter-active, .fade-leave-active {*/
+  /*  transition: opacity .2s*/
+  /*}*/
+  /*.fade-enter, .fade-leave-to !* .fade-leave-active in <2.1.8 *! {*/
+  /*  opacity: 0*/
+  /*}*/
+
  .container {
    width: 100%;
    margin-left: auto;

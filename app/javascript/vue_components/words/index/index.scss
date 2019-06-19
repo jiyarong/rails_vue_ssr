@@ -1,0 +1,48 @@
+.words-container {
+  padding: 20px;
+}
+
+.word-list {
+  border: #CCCCCC 1px solid;
+}
+
+.word-item {
+  margin: 10px 0;
+  padding: 5px;
+  border-bottom: #CCCCCC 1px solid;
+  display: flex;
+  flex-direction: row;
+
+  .word-item-info {
+    flex: 1;
+  }
+
+  .word-item-edit {
+    line-height: 20px;
+    padding: 2rem;
+  }
+}
+
+.word-tabs {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .word-tab {
+    flex: 1;
+    text-align: center;
+    background: #ff9200;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    padding: 5px 0;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(255, 22, 8, 0.59);
+    }
+
+    &.active {
+      background: #ff6f1e;
+    }
+  }
+}
