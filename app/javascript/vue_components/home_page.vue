@@ -219,6 +219,7 @@
   }
 
   .homepage-bg-container {
+    /**/
     position: absolute;
     height: 350px;
     width: 100%;
