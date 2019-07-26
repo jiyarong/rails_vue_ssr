@@ -17,8 +17,15 @@
       </div>
 
     </div>
+
+    <div class="post-content-index">
+      <div v-for="i_node in index_nodes" :class="`i_node_tag ${i_node.tagName}`" @click="() => {scrollToElement(`.${i_node.classList.value}`)}">
+        {{i_node.textContent}}
+      </div>
+    </div>
+
     <div class="post-content">
-      <vue-markdown :postrender="this.postrender" :source="this.content"></vue-markdown>
+      <vue-markdown @rendered="addContetIndex()" :postrender="this.postrender" :source="this.content"></vue-markdown>
     </div>
 
     <div v-if="!env_ssr" class="fb-comments-container">
@@ -51,7 +58,8 @@
         content: "",
         tags: [],
         images: [],
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        index_nodes: []
       }
     },
     created() {
@@ -82,10 +90,12 @@
     mounted() {
       scrollTo(0, 0);
       Prism.highlightAll();
+
       if (FB) {
         FB.XFBML.parse();
       }
     },
+
     updated() {
       Prism.highlightAll();
     },
@@ -99,6 +109,12 @@
         this.$viewer.show()
       },
 
+      scrollToElement(i_node_class) {
+        self.scrollToElement(i_node_class, {
+          offset: -55
+        })
+      },
+
       postrender(str) {
         if (typeof DOMParser !== "undefined") {
           let dom = new DOMParser().parseFromString(str, "text/html");
@@ -109,11 +125,27 @@
           this.images = img_tags.map((img) => {
             return img.getAttribute("src")
           })
-        }
 
+          //this.addContetIndex(dom);
+        }
         str = str.replace(/(src)/g, "onclick='showViewer()' $&")
 
         return str.replace(/(href)/g, "target='_blank' $&")
+      },
+
+      addContetIndex() {
+        if (!this.env_ssr) {
+          setTimeout(() => {
+            let arr = Array.from(document.querySelectorAll("h1,h2,h3,h4"));
+            console.log(arr);
+            window.__arr = arr;
+            arr.forEach((n, index) => {
+              n.classList.add(`_N_${index}`)
+            });
+            this.index_nodes = arr;
+          })
+
+        }
       }
     },
     components: {

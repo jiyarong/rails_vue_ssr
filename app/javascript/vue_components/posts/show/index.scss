@@ -1,5 +1,38 @@
 .post-show-container {
 
+  .post-content-index {
+    position: fixed;
+    background: #ffffed;
+    border-radius: 15px;
+    margin: 15px 0 0 15px;
+
+    .i_node_tag:last-child{
+      border: none;
+    }
+
+    .i_node_tag {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: #b8b7be 1px solid;
+
+      &:hover {
+        background: #FFFFC0
+      }
+
+      &.H2 {
+        padding-left: 15px;
+      }
+
+      &.H3 {
+        padding-left: 25px;
+      }
+
+      &.H4 {
+        padding-left: 35px;
+      }
+    }
+  }
+
   .post-title {
     width: 100%;
     text-align: center;
