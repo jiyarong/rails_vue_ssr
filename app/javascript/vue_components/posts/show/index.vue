@@ -68,6 +68,7 @@
             this.title = data.title;
             this.content = data.content;
             this.tags = data.tags
+            document.getElementsByTagName("title")[0].text = data.title
           });
         }
       }
