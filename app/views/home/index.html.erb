@@ -1,3 +1,5 @@
+<%= content_for :title, @post && @post[:title] %>
+
 <%= vue_component("application", {posts: @posts || nil, post: @post || nil, diary: @diary},
   {
     prerender: request.path,
