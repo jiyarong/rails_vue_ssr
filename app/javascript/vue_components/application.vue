@@ -21,16 +21,14 @@
         <item direction="right" color="antiquewhite" :group="[
           {name: '我这个人', routerLink: '/about/me'},
           {name: '这个博客', routerLink: '/about/this-blog'},
-          {name: '我的简历', routerLink: '/about/resume'}
+          {name: '我的简历', href: '/纪亚荣的简历.pdf'}
          ]">
           关于
         </item>
       </head-menu>
 
-      <div class="content">
-        <transition name="fade">
-          <router-view v-bind="$attrs" :outside="outside" :env_ssr="env_ssr"></router-view>
-        </transition>
+      <div class="content" data-aos="fade-up">
+        <router-view v-bind="$attrs" :outside="outside" :env_ssr="env_ssr"></router-view>
       </div>
       <router-link to="/posts/new" v-if="$store.state.hasLogin && $route.path !== '/posts/new'" class="add-new">
         +
