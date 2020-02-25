@@ -13,17 +13,21 @@ class Post < ApplicationRecord
 
   def human_updated_at
     time_now = Time.now
-    hours = (time_now - updated_at) / 3600
-    if hours <= 1
-      "#{((time_now - updated_at) / 60).to_i}分钟前"
-    elsif hours < 24
-      "#{((time_now - updated_at) / 3600).to_i}小时前"
-    elsif hours < 24 * 30
-      "#{((time_now - updated_at) / 3600 / 24).to_i}天前"
-    elsif hours < 24 * 90
-      "#{((time_now - updated_at) / 3600 / 24 / 30).to_i}个月前"
+    if (time_now.year > updated_at.year)
+      updated_at.strftime("%Y-%m-%d")
     else
-      updated_at.strftime("%m-%d")
+      hours = (time_now - updated_at) / 3600
+      if hours <= 1
+        "#{((time_now - updated_at) / 60).to_i}分钟前"
+      elsif hours < 24
+        "#{((time_now - updated_at) / 3600).to_i}小时前"
+      elsif hours < 24 * 30
+        "#{((time_now - updated_at) / 3600 / 24).to_i}天前"
+      elsif hours < 24 * 90
+        "#{((time_now - updated_at) / 3600 / 24 / 30).to_i}个月前"
+      else
+        updated_at.strftime("%m-%d")
+      end
     end
   end
 end
